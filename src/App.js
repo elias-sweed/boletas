@@ -120,6 +120,9 @@ useEffect(() => {
 
   const toggleConcepto = (id) => setForm(f => ({ ...f, conceptos: { ...f.conceptos, [id]: !f.conceptos[id] } }));
 
+  // eslint-disable-next-line no-unused-vars
+  const getConceptosList = (conceptos, otrosTexto) =>
+    CONCEPTOS.filter(c => conceptos[c.id]).map(c => c.id === "otros" && otrosTexto ? `Otros: ${otrosTexto}` : c.label).join(", ");
 
   return (
     <>
@@ -476,7 +479,7 @@ useEffect(() => {
                     <input className="field-input" value={form.numero}  onChange={e => setForm(f => ({ ...f, numero: e.target.value }))} />
                   </div>
                   <div className="field-group">
-                    <label className="field-label">Monto S/.</label>git push -u origin main
+                    <label className="field-label">Monto S/.</label>
                     <input className="field-input" type="number" step="0.50" value={form.monto}
                       onChange={e => setForm(f => ({ ...f, monto: e.target.value }))} />
                   </div>
@@ -591,6 +594,10 @@ useEffect(() => {
 
 
 function ReciboView({ r }) {
+  // eslint-disable-next-line no-unused-vars
+  const col0 = CONCEPTOS.filter(c => c.col === 0);
+  // eslint-disable-next-line no-unused-vars
+  const col1 = CONCEPTOS.filter(c => c.col === 1);
 
   return (
     <>
