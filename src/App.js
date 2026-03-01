@@ -478,7 +478,7 @@ useEffect(() => {
                     <input className="field-input" value={form.numero}  onChange={e => setForm(f => ({ ...f, numero: e.target.value }))} />
                   </div>
                   <div className="field-group">
-                    <label className="field-label">Monto S/.</label>
+                    <label className="field-label">Monto S/.</label>git push -u origin main
                     <input className="field-input" type="number" step="0.50" value={form.monto}
                       onChange={e => setForm(f => ({ ...f, monto: e.target.value }))} />
                   </div>
