@@ -120,8 +120,6 @@ useEffect(() => {
 
   const toggleConcepto = (id) => setForm(f => ({ ...f, conceptos: { ...f.conceptos, [id]: !f.conceptos[id] } }));
 
-  const getConceptosList = (conceptos, otrosTexto) =>
-    CONCEPTOS.filter(c => conceptos[c.id]).map(c => c.id === "otros" && otrosTexto ? `Otros: ${otrosTexto}` : c.label).join(", ");
 
   return (
     <>
@@ -593,8 +591,6 @@ useEffect(() => {
 
 
 function ReciboView({ r }) {
-  const col0 = CONCEPTOS.filter(c => c.col === 0);
-  const col1 = CONCEPTOS.filter(c => c.col === 1);
 
   return (
     <>
