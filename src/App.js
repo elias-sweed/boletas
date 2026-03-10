@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import './App.css';
 
 const CONCEPTOS = [
   { id: "cert_estudios", label: "Certificado de Estudios", col: 0 },
@@ -357,33 +358,52 @@ export default function App() {
         .toast.err { border-left-color: #dc2626; }
         @keyframes slideUp { from { opacity:0; transform:translateY(16px) } to { opacity:1; transform:translateY(0) } }
 
-        @media print {
-  /* 1. Oculta todo el contenido de la página manteniendo la estructura */
-  body * {
-    visibility: hidden;
-  }
-  
-  /* 2. Hace visible únicamente el modal de impresión y todo lo que esté dentro */
-  .recibo-print, .recibo-print * {
-    visibility: visible;
-  }
-  
-  /* 3. Posiciona el recibo exactamente en la esquina superior para imprimir */
-  .recibo-print {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-shadow: none;
-    border: none;
-  }
-  
-  /* 4. Oculta explícitamente los botones de acción para que no salgan en el papel */
-  .print-actions, .print-actions * {
+   @media print {
+  /* 1. Ocultar la aplicación de fondo en lugar de usar visibility: hidden */
+  .app-header, 
+  .gold-bar, 
+  .content, 
+  .toast {
     display: none !important;
-    visibility: hidden !important;
+  }
+
+  /* 2. Quitar la posición fija del overlay para que el navegador pueda "leer" el alto real */
+  .overlay {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;
+  }
+
+  /* 3. Limpiar el modal de sombras, bordes y límites de altura */
+  .modal {
+    box-shadow: none !important;
+    border: none !important;
+    border-top: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    animation: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    background: white !important; /* Forzar fondo blanco */
+  }
+
+  /* 4. Asegurar que el recibo tome todo el espacio de la hoja */
+  .recibo-print {
+    position: relative !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* 5. Ocultar los botones de acción para que no salgan en el papel */
+  .print-actions {
+    display: none !important;
+  }
+
+  /* 6. (Opcional) Configurar los márgenes de la hoja de impresión */
+  @page {
+    margin: 1.5cm;
   }
 }
       `}</style>
